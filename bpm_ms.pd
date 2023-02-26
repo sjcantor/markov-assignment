@@ -1,0 +1,7 @@
+#N canvas 289 81 494 220 10;
+#X obj 26 22 inlet;
+#X obj 26 70 outlet;
+#X text 124 46 if input in ms output in BPM and viceversa;
+#X obj 26 46 expr 60000/$f1;
+#X connect 0 0 3 0;
+#X connect 3 0 1 0;

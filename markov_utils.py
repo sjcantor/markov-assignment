@@ -1,6 +1,7 @@
 import numpy as np
 import re
 import random
+import math
 
 
 def generate_pdf(event_list):
@@ -21,18 +22,13 @@ def create_pdf_with_complexity(events, pdf, desired_complexity):
     closeness_arr = []
     max_score = 7
 
-    for e in events:
-        closeness = abs(int(e[1]) - desired_complexity)
-        # now we need to invert this score so that a higher value in the pdf is better
-        score = max_score - closeness
-        score = score * 1000
-        closeness_arr.append(score)
+    closeness_arr = [abs(int(e[1]) - desired_complexity) for e in events]
+    total_closeness = sum(closeness_arr)
 
-    c = [closeness_arr[i] * pdf[i] for i in range(len(pdf))]
+    weights = [math.exp(-w**2 / 2) for w in closeness_arr]
 
-    # normalize array
-    norm = [float(i)/sum(c) for i in c]
-    return norm
+    c = [weights[i] * pdf[i] for i in range(len(pdf))]
+    return c
 
 
 def select_event_from_pdf(events, pdf, desired_complexity):

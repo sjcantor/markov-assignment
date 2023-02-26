@@ -1,0 +1,19 @@
+#N canvas 303 330 514 272 10;
+#X obj 22 116 timer;
+#X obj 22 18 key;
+#X obj 22 81 t b b;
+#X floatatom 22 152 6 0 0 0 - - - 0;
+#X obj 22 184 moses 1500;
+#X text 94 179 descartamos lapsos > 1500 ms (negras a 40 BPM) ya que
+la primera vez que pulsemos después de un rato sin hacerlo \, nos
+daría el tiempo entre las dos pulsaciones;
+#X obj 22 215 outlet;
+#X obj 22 49 sel \$1;
+#X text 67 49 activated with the key indicated as argument;
+#X connect 0 0 3 0;
+#X connect 1 0 7 0;
+#X connect 2 0 0 0;
+#X connect 2 1 0 1;
+#X connect 3 0 4 0;
+#X connect 4 0 6 0;
+#X connect 7 0 2 0;

@@ -29,7 +29,7 @@ class simple_object(pyext._class):
     # The leftmost inlet is used to receive a "reload" message to refresh the object
     # when you chnage the code
 
-    _outlets = 4
+    _outlets = 6
     _model = Markov_Model()
     _model.train()
     _nb_chords = 8
@@ -57,11 +57,10 @@ class simple_object(pyext._class):
 
         for i in range(1, nb_notes + 1):
             note = self._midi_notes[self._current_chord][i - 1]
-            print(note)
             self._outlet(i, note)
 
-        if nb_notes != self._outlets:
-            self._outlet(self._outlets, 0)  # sssh no one will hear it
+        for i in range(nb_notes + 1, self._outlets + 1):
+            self._outlet(i, 0)  # sssh no one will hear it
 
         self._current_chord += 1
         self._current_chord = self._current_chord % self._nb_chords

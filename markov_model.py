@@ -9,7 +9,7 @@ from markov_utils import *
 # * Extensions are assumed to be flat 7 unless 'maj' is used
 training_data = ['C', 'E7', 'F', 'C', 'Dm7', 'G', 'C', 'C',
                  'F', 'E7', 'Am', 'Gm', 'C7', 'F', 'Em', 'Dm7', 'G7', 'C',
-                 'Cmaj9', 'E7#5', 'Am9', 'G7', 'Dm9', 'Dm9/G', 'Cmaj7', 'G']
+                 'Cmaj9', 'E7#5', 'Am9', 'G7', 'Dm9', 'Dm9/G', 'Cmaj7', 'G', 'Cm7/A', 'A7b9', 'F#9/A', 'G#/C', 'C/G', 'D/A']
 
 
 class Markov_Model:
