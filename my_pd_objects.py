@@ -25,7 +25,7 @@ print(dname)
 class simple_object(pyext._class):
     # There is one inlet (the leftmost) and one outlet (the rightmost) by default.
     # Add more here:
-    _inlets = 2  # 3 inlets total.
+    _inlets = 3
     # The leftmost inlet is used to receive a "reload" message to refresh the object
     # when you chnage the code
 
@@ -36,12 +36,14 @@ class simple_object(pyext._class):
     _current_chord = 0
     _sequence = None
     _midi_notes = None
+    _complexity = 3
 
     # This method will be triggered when a "load" message is received on the third inlet
     def load_2(self, *args):
-        self._sequence = self._model.generate(self._nb_chords)
+        self._sequence = self._model.generate(
+            self._nb_chords, self._complexity)
         self._midi_notes = [[note_name_to_number(note) for note in Chord(
-            chord).components_with_pitch(root_pitch=4)] for chord in self._sequence]
+            str(chord[0])).components_with_pitch(root_pitch=4)] for chord in self._sequence]
         print(self._midi_notes)
 
     # This method will be triggered when a "search" message is received on the second inlet
@@ -64,12 +66,15 @@ class simple_object(pyext._class):
         self._current_chord += 1
         self._current_chord = self._current_chord % self._nb_chords
 
+    def complexity_3(self, *args):
+        self._complexity = args[0]
 
-##########################################################################
+        ##########################################################################
+
+        # This class represents another pd object called generator_pd
+        # [pyext my_pd_objects.generator_pd]
 
 
-# This class represents another pd object called generator_pd
-# [pyext my_pd_objects.generator_pd]
 class generator_pd(pyext._class):
     _inlets = 2
     _outlets = 1
