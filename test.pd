@@ -1,0 +1,12 @@
+#N canvas 621 241 819 300 12;
+#X obj 61 60 pyext my_pd_objects.simple_object;
+#X msg 61 34 reload;
+#X msg 289 28 load 1 2;
+#X msg 175 31 search;
+#X obj 61 84 print A;
+#X obj 175 87 print B;
+#X connect 0 0 4 0;
+#X connect 0 1 5 0;
+#X connect 1 0 0 0;
+#X connect 2 0 0 2;
+#X connect 3 0 0 1;
